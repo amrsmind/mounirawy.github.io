@@ -30,6 +30,7 @@ h1 {
 
 
 #register {
+  /* background: #fff; */
   background: #fff;
   position: relative;
   width: 550px;
@@ -130,4 +131,45 @@ h1 {
   font-weight: 600;
   font-size: 14px;
 }
+
+
+/* style for js created elements  */
+/* ****************************************  */
+.optionBtn {
+  border: 2px solid #4CBAE9;
+  background-color: transparent;
+  color: #4CBAE9;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  width: 250px;
+  display: inline-block;
+}
+
+
+.optionBtn:hover {
+  background-color: #4CBAE9;
+  color: white;
+}
+
+
+
+
+
+
+/*///////////////////////// style for upload file ****/
+/*
+ * File
+ */ 
+ .image-upload > input
+ {
+     display: none;
+ }
+
+ .image-upload img
+ {
+     width: 80px;
+     cursor: pointer;
+ }
 
