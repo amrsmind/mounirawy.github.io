@@ -78,9 +78,10 @@ var onComplete = function() {
 
     // load the next question
     function putQuestion() {
+        // console.log(questions[position]);
         if(questions[position].type=='specefic'){
             if(questions[position].circle!=questions[questions[position].questionIndex].answer){
-                inputField.value = "fakevaluetopassvalidation";
+                // inputField.value = "fakevaluetopassvalidation";
                 validate();
                  return;
             }else{
@@ -124,7 +125,7 @@ var onComplete = function() {
                      
                       inputContainer.appendChild(fileuploadcontainer);
 
-                      inputField.value = "fakevaluetopassvalidation";
+                    //   inputField.value = "fakevaluetopassvalidation";
 
                 }
             
@@ -163,7 +164,7 @@ var onComplete = function() {
             
             questions[position].answer = e.target.id; 
 
-            inputField.value = "fakevaluetopassvalidation";
+            // inputField.value = "fakevaluetopassvalidation";
 
               validate();
 
@@ -203,7 +204,11 @@ var onComplete = function() {
 
         // check if the pattern matches
         // if (!questions[position].validate()) wrong(inputField.focus.bind(inputField))
-        if(inputField.value=='')  wrong(inputField.focus.bind(inputField))
+
+
+        
+
+        if(inputField.value=='' && questions[position].type=='text')  wrong(inputField.focus.bind(inputField))
         else ok(function() {
 
             // execute the custom end function or the default value set
@@ -235,21 +240,23 @@ var onComplete = function() {
 
     function hideCurrent(callback,pos) {
 
-        if(questions[pos].type=="options"){
+        if(questions[pos].type2 == questions[pos].type){
+            questions[pos].type = 'specefic';
+        }
+       if(questions[pos].type=="options" || questions[pos].type2=="options"){
                     //removeoptionform 
-                textQuestion.remove();
+
+                typeof textQuestion!=="undefined"?textQuestion.remove():'';
 
                 document.querySelectorAll('.optionBtn').forEach(function(btn) {
                      btn.remove();
                 });
         }
-        else if(questions[pos].type=="fileupload"){
-            fileuploadcontainer.remove();
+         if(questions[pos].type=="fileupload" || questions[pos].type2=="fileupload"){
+            typeof fileuploadcontainer!=="undefined"?fileuploadcontainer.remove():'';
         }
 
-        else if(questions[pos].type2 == questions[pos].type){
-            questions[pos].type = 'specefic';
-        }
+
         
 
         inputContainer.style.opacity = 0
