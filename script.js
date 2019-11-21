@@ -8,16 +8,17 @@
   
 
  **********/
+//default type question is text 
 
 var questions = [
-  {question:"What's your full name?"},
+  {question:"What's your full name?",type:'text'}, 
   {question:"Do you want the plans to include the dependents?",type:"options",options:['Yes','No']},
 //   {question:"What's your email?", pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/},
-   {question:"Enter employee number?"},
+   {question:"Enter employee number?",type:'text'},
 //   {question:"Create your password", type: "password"}
-{question:"Enter your annual coverage maximum for every member."},
+{question:"Enter your annual coverage maximum for every member.",type:'text'},
 {question:"",type:"options",options:['Enter average age values for estimated prices','Enter full data to get the actual price']},
-{question:"Enter the average age.",type:"specefic",circle:0,questionIndex:4},
+{question:"Enter the average age.",type:"specefic",type2:"text",circle:0,questionIndex:4}, //means show this question for people who choose the 0 index option at question index 4
 {question:"Upload the template",type:"specefic",type2:"fileupload",circle:1,questionIndex:4}
 ]
 
@@ -56,10 +57,20 @@ var onComplete = function() {
 
     previousButton.addEventListener('click', function(e) {
         if (position === 0) return
+        var currentpos = position;
         position -= 1
-        hideCurrent(putQuestion,position+1)
-    })
 
+        //back to first not specefic type question 
+        for(let pos=position;pos>0;pos--){
+             if(questions[pos].type=='specefic'){
+                 position--;
+             }else{
+                 break;
+             }
+        }
+
+        hideCurrent(putQuestion,currentpos);
+    })
 
 
     // functions
@@ -69,11 +80,19 @@ var onComplete = function() {
     function putQuestion() {
         if(questions[position].type=='specefic'){
             if(questions[position].circle!=questions[questions[position].questionIndex].answer){
-                inputField.validate = "fakevaluetopassvalidation";
+                inputField.value = "fakevaluetopassvalidation";
                 validate();
-                return;
+                 return;
             }else{
-                if(questions[position].type2=='fileupload'){
+
+                questions[position].type = questions[position].type2 || null;
+               
+                putQuestion();
+                return;
+            }
+        }
+                ///////////
+                if(questions[position].type=='fileupload'){
                               //make these disappear 
                       inputLabel.style.display = "none";
                  forwardButton.style.display = "";
@@ -81,9 +100,9 @@ var onComplete = function() {
                       inputField.style.display = "none";
 
 
-
-                       var container = document.createElement("div");
-                       container.className = "image-upload";
+                       var fileuploadcontainer = document.createElement("div");
+                       fileuploadcontainer.className = "image-upload";
+                       fileuploadcontainer.setAttribute("id","fileuploadcontainer");
 
                       var label = document.createElement("label");
                       label.setAttribute("for","file-input");
@@ -98,20 +117,18 @@ var onComplete = function() {
                       uploadfile.setAttribute("id","file-input"); 
 
 
-                      container.appendChild(label);
+                      fileuploadcontainer.appendChild(label);
 
-                     container.appendChild(uploadfile);
-
-
+                      fileuploadcontainer.appendChild(uploadfile);
 
                      
-                      inputContainer.appendChild(container);
+                      inputContainer.appendChild(fileuploadcontainer);
 
-                      inputField.validate = "fakevaluetopassvalidation";
+                      inputField.value = "fakevaluetopassvalidation";
 
                 }
-            }
-        }
+            
+        
         else if (questions[position].type == "options") {
           //add optional question with button like yes or no questions
 
@@ -141,14 +158,12 @@ var onComplete = function() {
 
             inputContainer.appendChild(tempButton);
 
-
             //user took action to choose 
             tempButton.addEventListener("click",function(e){
             
             questions[position].answer = e.target.id; 
 
-            inputField.validate = "fakevaluetopassvalidation";
-
+            inputField.value = "fakevaluetopassvalidation";
 
               validate();
 
@@ -225,8 +240,15 @@ var onComplete = function() {
                 textQuestion.remove();
 
                 document.querySelectorAll('.optionBtn').forEach(function(btn) {
-                                btn.remove();
+                     btn.remove();
                 });
+        }
+        else if(questions[pos].type=="fileupload"){
+            fileuploadcontainer.remove();
+        }
+
+        else if(questions[pos].type2 == questions[pos].type){
+            questions[pos].type = 'specefic';
         }
         
 
