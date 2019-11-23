@@ -1,7 +1,7 @@
 // the call up girl data 
-const imgUrl1 = "blob/master/img/happy.png";
-const imgUrl2 = "blob/master/img/help.png";
-const imgUrl3 = "blob/master/img/nice.png";
+const imgUrl1 = "mounirawy.github.io/img/happy.png";
+const imgUrl2 = "mounirawy.github.io/img/happy.png";
+const imgUrl3 = "mounirawy.github.io/img/happy.png";
 
 const dialogues = [
     {imgsrc:imgUrl2,posLeft:"150px",posTop:"40px",
