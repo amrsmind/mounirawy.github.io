@@ -3,6 +3,7 @@ body {
   background: #dadada;
   font-family: 'Noto Sans', sans-serif;
   overflow-x: hidden;
+
 }
 
 h1 {
@@ -16,7 +17,7 @@ h1 {
 #progress { 
   position: absolute;
   background: #4CBAE9;
-  height: 100vh;
+  height: 1.6vh;
   width: 0;
   transition: width 0.2s ease-in-out;
 }
@@ -128,8 +129,10 @@ h1 {
 }
 
 #inputField, #inputLabel{
-  font-weight: 600;
+  font-weight: 300;
   font-size: 14px;
+  color:#afafaf
+
 }
 
 
@@ -154,6 +157,9 @@ h1 {
 }
 
 
+#textQuestion{
+  font-weight: 300;
+}
 
 
 
@@ -173,3 +179,87 @@ h1 {
      cursor: pointer;
  }
 
+
+
+
+
+
+ /* call up girl css */
+ #callupContainer{
+  position: absolute;
+  width: 1000px;
+  height: 800px;
+  display: none;
+}
+
+#callup{
+  /* display: inline-block; */
+  margin-top:50px ;
+}
+
+#person > img{
+  margin-top:5% ;
+  width: 10%;
+  height: 30%;
+  /* float:left; */
+}
+
+#msg{
+    position: absolute;
+    top:22.5px;
+    left:0;
+    margin-left: 14.1%;
+    /* float: left; */
+    text-align: center;
+    border: 2px solid transparent;
+    background:#4CBAE9;
+    color:white;
+    border-radius: 50%;
+    padding:1% 2% 2% 2% ;
+    box-shadow: 10px 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 75%;
+}
+
+#circle1{
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background: #4CBAE9;
+    border-radius: 50%;
+    margin-left:12.2%;
+    top:10.4%;
+    box-shadow: 10px 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+
+}
+
+#circle2{
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background: #4CBAE9;
+    border-radius: 50%;
+    margin-left:10.5%;
+    top:13%;
+    box-shadow: 10px 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+
+}
+
+#circle3{
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: #4CBAE9;
+    border-radius: 50%;
+    margin-left:9%;
+    top:15%;
+    box-shadow: 10px 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+
+}
+
+
+
+
+
+ /* close call up girl css */
